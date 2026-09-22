@@ -7,3 +7,26 @@ body{
     background-color: #FFFEFE;
     font-family: sans-serif;
 }
+a{
+    text-decoration: none;
+}
+li{
+    list-style: none;
+}
+.dl-flex{
+    display: flex;
+}
+.navbar{
+    padding: 20px;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.logo-bar img{
+    width: 40px;
+    height: 40px;
+}
+nav
+.nav-btn a{
+    background-color: #8D54A1;
+}
