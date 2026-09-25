@@ -25,6 +25,16 @@ li{
 .green-btn{
     background-color: #A5D032;
 }
+.grey-btn{
+    background-color: #eeddf8;
+    color: #8D54A1;
+    padding: 10px 20px;
+}
+.buttons{
+    display: flex;
+    /* justify-content: flex-start; */
+    align-items: center;
+}
 .navbar{
     background-color: #FFFEFE;
     padding: 20px;
@@ -77,6 +87,13 @@ nav ul a{
     font-size: 120px;
     color: white;
 }
+.section-2 p{
+    /* font-family: 'EB Garamond', serif; */
+    font-size: 20px;
+    width: 45%;
+    font-style: italic;
+    color: white;
+}
 .section-3{
     padding: 50px;
     gap: 20px;
@@ -105,13 +122,10 @@ nav ul a{
     font-size: 22px;
     /* line-height: 30px; */
 }
-.section-3-btns{
-    margin-top: 40px;
+.section-3 .buttons{
+    margin-top: 30px;
 }
-.sch-btn{
-    background-color: #f0e0fa;
-    color: #8D54A1;
-}
+
 .section-3-img{
     height: max-content;
     margin: auto;
@@ -135,4 +149,51 @@ nav ul a{
     border-radius: 20px;
     align-items: center;
     vertical-align: middle;
+}
+
+.section-4{
+    background: #f8edff;
+    /* color: #8D54A1; */
+    padding: 50px;
+}
+.service-header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+.service-header small{
+    font-size: 24px;
+    font-style: italic;
+    color: #A5D032;
+}
+.service-header h2{
+    color: #8D54A1;
+    font-size: 45px;
+}
+.service-header p{
+    width: 55%;
+    font-size: 18px;
+    text-align: center;
+}
+.service-details{
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+.service{
+    text-align: center;
+    background-color: white;
+    border-radius: 13px;
+    padding: 20px;
+}
+.service-details h2{
+    color: #39125a;
+    font-size: 33px;
+    font-weight: 300;
+}
+.service-details small{
+    color: #8D54A1;
+    font-size: 16px;
 }
