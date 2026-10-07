@@ -3,7 +3,10 @@
     margin: 0;
     padding: 0;
 }
-
+body{
+    /* font-family: 'Poppins', sans-serif; */
+    background: #FAF8F5;
+}
 a{
     text-decoration: none;
 }
@@ -65,8 +68,6 @@ nav ul a{
      font-size: 30px;
   font-weight: bold;
   vertical-align: middle;
-  /* text-align: center; */
-  /* padding: 0 10px;  */
 }
 .section-2{
     background-image: linear-gradient(#33104ff8, #33104fc0, #8c54a1b2), url(/Images/church-1~1.jpg);
@@ -93,6 +94,10 @@ nav ul a{
     width: 45%;
     font-style: italic;
     color: white;
+}
+.section-2 .buttons{
+    margin-top: 30px;
+    gap: 30px;
 }
 .section-3{
     padding: 50px;
@@ -152,41 +157,44 @@ nav ul a{
 }
 
 .section-4{
-    background: #f8edff;
+    background: #F4EBF6;
     /* color: #8D54A1; */
     padding: 50px;
 }
-.service-header{
+.section-header{
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 15px;
 }
-.service-header small{
+.section-header small{
     font-size: 24px;
     font-style: italic;
     color: #A5D032;
 }
-.service-header h2{
+.section-header h2{
     color: #8D54A1;
     font-size: 45px;
 }
-.service-header p{
+.section-header p{
     width: 55%;
     font-size: 18px;
     text-align: center;
 }
-.service-details{
-    margin-top: 40px;
+.section-grid{
+    margin-top: 30px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
 }
-.service{
+.service-box{
+position: relative;
     text-align: center;
     background-color: white;
     border-radius: 13px;
-    padding: 20px;
+    padding: 30px;
+    height: 220px;
+    width: 100%;
 }
 .service-details h2{
     color: #39125a;
@@ -196,4 +204,138 @@ nav ul a{
 .service-details small{
     color: #8D54A1;
     font-size: 16px;
+}
+.service-foot{
+    justify-content: space-between;
+    align-items: center;
+    /* text-align: right; */
+    /* gap: ; */
+    margin-top: 20px; 
+    /* position: absolute;   */
+    bottom: 0;
+}
+.service-venue{
+    margin-top: 30px;
+    justify-content: space-between;
+}
+.service-venue a{
+    color:#39125a;
+    font-weight: 600;
+    border-bottom: 1px solid;
+}
+
+.section-5{
+    /* color: #8D54A1; */
+    background: #FAF8F5;
+    padding: 50px;
+    margin-bottom: 50px;
+}
+.program-box{
+    flex-direction: column;
+    align-items: start;
+    background-color: white;
+    border-radius: 13px;
+    height: 220px;
+    width: 100%;
+    height: max-content;
+    border-radius: 18px;
+    box-shadow:0px 3px 10px #cacaca;
+}
+.program-box-text{
+    padding: 25px;
+    gap: 10px;
+    flex-direction: column;
+}
+.program-box-text h3 {
+    color: #300e4d;
+    font-size: 25px;
+}
+.program-box-text p{
+    text-align:left ;
+    width: auto;
+    font-size: 19px;
+    color: #464545;
+}
+.program-box .program-img{
+    width: inherit;
+    border-radius: 18px 18px 0 0;
+    /* image-rendering: auto; */
+}
+.program-box a{
+    color: #39125a;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 15px;
+    background-color: #F4EBF6;
+    border-radius:10px;
+}
+.section-6{
+    background: linear-gradient(to right, #a965c2, #431E62);
+    flex-direction: column;
+    align-items: center;
+    margin: 0 50px 30px;
+    padding: 50px;
+    gap: 20px;
+    border-radius: 30px;
+}
+
+.section-6 h1{
+    color: white;
+    font-size: 50px;    
+}
+.section-6 p{
+    color: white;
+    font-size: 20px;
+    width: 50%;
+    text-align: center;
+}
+.section-6 a{
+    color: #39125a;
+    background-color: white;
+    padding: 15px 30px;
+    border-radius: 13px;
+    font-weight: 600;
+}
+.section-6 h5{
+    color: white;
+    font-size: 16px;
+    font-weight: 100;
+}
+.section-7{
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    background: #FFF7FF;
+    margin: 50px 0;
+    padding:80px 50px;
+}
+.section-7 h2{
+    color: #8D54A1;
+    font-size: 40px;
+}
+.section-7 p{
+    color: #8D54A1;
+    font-size: 20px;
+    width: 50%;
+    text-align: center;
+    font-style: italic;
+}
+.section-7 p.p-bg{
+    font-size: 19px;
+    /* width: 50%; */
+    padding: 30px;
+    border-radius: 20px;
+    background: #F7F1FA;
+    /* text-align: center; */
+    font-style: normal;
+}
+.section-7-form form{
+    flex-direction: column;
+    /* align-items: center; */
+    /* gap: 20px; */
+    /* margin-top: 30px; */
+}
+.section-7 label{
+    margin-top: 30px;
+    gap: 20px;
 }
