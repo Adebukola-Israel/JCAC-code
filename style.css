@@ -673,6 +673,20 @@ textarea:focus-visible{
     color: var(--body-ink);
 }
 
+.service-foot .calendar-link{
+    color: var(--purple);
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.service-foot .calendar-link:focus-visible{
+    border-radius: 2px;
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+}
+
 .service-box-highlight{
     position: relative;
     overflow: hidden;
@@ -698,6 +712,10 @@ textarea:focus-visible{
 .service-box-highlight small,
 .service-box-highlight .service-foot p,
 .service-box-highlight .service-foot span{
+    color: white;
+}
+
+.service-box-highlight .service-foot .calendar-link{
     color: white;
 }
 
