@@ -674,15 +674,27 @@ textarea:focus-visible{
 }
 
 .service-foot .calendar-link{
-    color: var(--purple);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 36px;
+    padding: 8px 12px;
+    border: 1px solid var(--purple);
+    border-radius: 999px;
+    background: var(--purple);
+    color: white;
     font-size: 12px;
     font-weight: 700;
-    text-decoration: underline;
-    text-underline-offset: 3px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 160ms ease, color 160ms ease;
+}
+
+.service-foot .calendar-link:hover{
+    background: var(--deep-purple);
 }
 
 .service-foot .calendar-link:focus-visible{
-    border-radius: 2px;
     outline: 2px solid currentColor;
     outline-offset: 3px;
 }
@@ -716,7 +728,13 @@ textarea:focus-visible{
 }
 
 .service-box-highlight .service-foot .calendar-link{
-    color: white;
+    border-color: white;
+    background: white;
+    color: var(--deep-purple);
+}
+
+.service-box-highlight .service-foot .calendar-link:hover{
+    background: #f4ebf6;
 }
 
 .service-box-highlight > .service-main > p{

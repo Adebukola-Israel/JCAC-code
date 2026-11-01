@@ -104,28 +104,69 @@ function createCalendarFile(link) {
     return new Blob([`${lines.map(foldCalendarLine).join('\r\n')}\r\n`], { type: 'text/calendar;charset=utf-8' });
 }
 
-document.querySelectorAll('.calendar-link').forEach(link => {
-    link.addEventListener('click', event => {
-        event.preventDefault();
-
-        try {
-            const file = createCalendarFile(link);
-            const url = URL.createObjectURL(file);
-            const download = document.createElement('a');
-            const filename = link.dataset.calendarTitle
-                .toLowerCase()
-                .replace(/[^a-z0-9]+/g, '-')
-                .replace(/^-|-$/g, '');
-
-            download.href = url;
-            download.download = `${filename}.ics`;
-            document.body.append(download);
-            download.click();
-            download.remove();
-            window.setTimeout(() => URL.revokeObjectURL(url), 1000);
-        } catch (error) {
-            console.error('Unable to create the church service calendar file.', error);
-            window.alert('The calendar file could not be created. Please try again or contact the church.');
-        }
+function createGoogleCalendarUrl(link) {
+    const { calendarDay, calendarStart, calendarEnd, calendarTitle, calendarDescription, calendarLocation } = link.dataset;
+    const date = getNextServiceDate(calendarDay, calendarStart);
+    const dates = `${date}T${calendarStart.replace(':', '')}00/${date}T${calendarEnd.replace(':', '')}00`;
+    const parameters = new URLSearchParams({
+        action: 'TEMPLATE',
+        text: calendarTitle,
+        dates,
+        ctz: calendarTimeZone,
+        details: calendarDescription,
+        location: calendarLocation,
+        recur: `RRULE:FREQ=WEEKLY;BYDAY=${calendarDay}`
     });
+
+    return `https://calendar.google.com/calendar/render?${parameters}`;
+}
+
+function isAppleDevice(device = navigator) {
+    const userAgent = device.userAgent || '';
+    const platform = device.platform || '';
+    const isAppleMobile = /iPhone|iPad|iPod/i.test(userAgent);
+    const isIPadDesktopMode = platform === 'MacIntel' && device.maxTouchPoints > 1;
+    const isMac = /Mac/i.test(platform) || /Macintosh/i.test(userAgent);
+
+    return isAppleMobile || isIPadDesktopMode || isMac;
+}
+
+document.querySelectorAll('.calendar-link').forEach(link => {
+    try {
+        if (isAppleDevice()) {
+            link.addEventListener('click', event => {
+                event.preventDefault();
+
+                try {
+                    const file = createCalendarFile(link);
+                    const url = URL.createObjectURL(file);
+                    const download = document.createElement('a');
+                    const filename = link.dataset.calendarTitle
+                        .toLowerCase()
+                        .replace(/[^a-z0-9]+/g, '-')
+                        .replace(/^-|-$/g, '');
+
+                    download.href = url;
+                    download.download = `${filename}.ics`;
+                    document.body.append(download);
+                    download.click();
+                    download.remove();
+                    window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+                } catch (error) {
+                    console.error('Unable to create the Apple Calendar file.', error);
+                    window.alert('The calendar file could not be created. Please try again or contact the church.');
+                }
+            });
+        } else {
+            link.href = createGoogleCalendarUrl(link);
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+        }
+    } catch (error) {
+        console.error('Unable to prepare the calendar link.', error);
+        link.addEventListener('click', event => {
+            event.preventDefault();
+            window.alert('The calendar link could not be created. Please try again or contact the church.');
+        });
+    }
 });
