@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JCAC</title>
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/style.css?v=media-dropdown-2">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://gstatic.com" crossorigin>
-<link href="https://googleapis.com" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 </head>
 <body>
@@ -20,197 +20,311 @@
                 <p>JESUS CHRIST ANOINTED CHURCH</p>
             </div>
         </div>
-        <nav class="nav-list">
+        <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="nav-list" id="site-navigation" aria-label="Main navigation">
             <ul class="dl-flex">
-                <li><a href="#" class="btn pur-btn">Home</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Ministries</a></li>
-                <li><a href="#">Media & Sermons</a></li>
-                <li><a href="#">Events</a></li>
-                <li><a href="#">Contacts</a></li>
+                <li><a href="#home" class="btn pur-btn">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="#ministries">Ministries</a></li>
+                <li class="nav-dropdown">
+                    <button class="nav-media-label" type="button" aria-expanded="false" aria-controls="media-submenu">Media</button>
+                    <ul class="dropdown-menu" id="media-submenu">
+                        <li><a href="https://www.youtube.com/channel/UChsjNskl5XIpMcbpCFQoiUg" target="_blank" rel="noopener noreferrer">Watch Live</a></li>
+                        <li><a href="sermons.html">Sermons</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="news.html">News</a></li>
+                    </ul>
+                </li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
         <div class="buttons">
-            <a href="#" class="btn pur-btn">Plan Your Visit</a>
-            <a href="#" class="btn green-btn">Give Online</a>
+            <a href="#services" class="btn pur-btn">Plan Your Visit</a>
+            <a href="#giving" class="btn green-btn">Give Online</a>
         </div>
    </header>
+   <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navbar = document.querySelector('.navbar');
+        const navigation = document.querySelector('#site-navigation');
+
+        function setMenuOpen(isOpen) {
+            navbar.classList.toggle('menu-open', isOpen);
+            menuToggle.setAttribute('aria-expanded', String(isOpen));
+            menuToggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+        }
+
+        menuToggle.addEventListener('click', () => {
+            setMenuOpen(menuToggle.getAttribute('aria-expanded') !== 'true');
+        });
+
+        const mediaToggle = document.querySelector('.nav-media-label');
+        mediaToggle.addEventListener('click', () => {
+            if (!window.matchMedia('(max-width: 1100px)').matches) return;
+            const isOpen = mediaToggle.getAttribute('aria-expanded') !== 'true';
+            mediaToggle.setAttribute('aria-expanded', String(isOpen));
+            mediaToggle.closest('.nav-dropdown').classList.toggle('media-open', isOpen);
+        });
+
+        navigation.addEventListener('click', (event) => {
+            if (event.target.closest('a')) {
+                setMenuOpen(false);
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
+                setMenuOpen(false);
+                menuToggle.focus();
+            }
+        });
+   </script>
 
    <!-- MAIN -->
     <div class="main">
         <div class="section-1">
-            <div class="dl-flex">
-                <p>UPCOMING SPECIAL EVENT</p>
-            <h2>Unlimited Possibilities: A 3-Day Prayer Program</h2>
+            <div class="event-heading">
+                <div class="event-title">
+                    <span class="event-label">UPCOMING SPECIAL EVENT</span>
+                    <h2>Unlimited Possibilities — 3 Day Prayer Program</h2>
+                </div>
+                <p>September 18th &amp; 19th at 7:00 PM &bull; September 20th at 10:30 AM &bull; 571 Bayfield Street, Barrie &amp; Online</p>
+            </div>
+            <a class="event-link" href="#services">Event Details <span aria-hidden="true">&rarr;</span></a>
         </div>
-            <p>September 18th & 19th at 7:00pm <span class="middot">&middot;</span> September 20th at 10:30am <span class="middot">&middot;</span> 571 Bayfield Street, Barrie & Online</p>
-        </div>
-        <div class="section-2">
-            <h1>This is Home!</h1>
-            <p>A welcoming sanctuary of heartfelt praise, life-giving truth and authentic family community in Barrie, Ontario.</p>
-            <div class="buttons dl-flex">
-                <a href="#" class="btn green-btn">Plan Your Visit</a>
-                <a href="#" class="btn pur-btn">Watch Online</a>
+        <div class="section-2" id="home">
+            <div class="hero-content">
+                <h1>This is Home!</h1>
+                <p>A welcoming sanctuary of heartfelt praise, life-giving truth, and authentic family community in Barrie, Ontario.</p>
+                <div class="buttons dl-flex">
+                    <a href="#" class="btn green-btn"><img class="hero-button-icon" src="/Images/hero-plan-icon.svg" alt="">Plan Your Visit</a>
+                    <a href="#" class="btn pur-btn"><img class="hero-button-icon" src="/Images/hero-watch-icon.svg" alt="">Watch Online</a>
+                </div>
             </div>
         </div>
-        <div class="section-3 dl-flex">
+        <section class="section-3" id="welcome">
             <div class="container-text">
-                <small>You’re welcome here</small>
-                <br>
+                <small>You're Welcome Here</small>
                 <h2>Welcome to Jesus Christ Anointed Church — A Place to Experience God’s Love and Power</h2>
-                <br>
                 <hr>
-                <br>
-                <p>At Jesus Christ Anointed Church, we are a family of believers who love God, love people, and seek to share the life-changing power of Jesus Christ with everyone we meet.</p> <br>
+                <p>At Jesus Christ Anointed Church, we are a family of believers who love God, love people, and seek to share the life-changing power of Jesus Christ with everyone we meet.</p>
                 <p>Whether you’re joining us for the first time or looking for a church to call home, we invite you to come as you are and experience God’s presence. Together, we grow in faith, encourage one another, and serve our community — all for the glory of God.</p>
                 <div class="buttons">
-                    <a href="#" class="btn pur-btn">Who We Are</a>
-                    <a href="#" class="btn grey-btn">Our Schedule</a>
+                    <a href="#contact" class="btn pur-btn">Who We Are <img src="/Images/icon-who-we-are.svg" alt=""></a>
+                    <a href="#services" class="btn grey-btn"><img src="/Images/icon-schedule.svg" alt="">Our Schedule</a>
                 </div>
             </div>
             <div class="section-3-img">
-                <div class="img-grid">
-                    <img class="container-img" src="/Images/ladies-in-church~1.jpg" alt="">
-                    <div class="img-grid-text">
-                        <p style ="font-size: 20px;">“Where the Spirit of the Lord is, there is freedom and unconditional love.”</p>
-                    </div>
+                <div class="welcome-gallery">
+                    <img class="welcome-image" src="/Images/welcome-service.jpg" alt="Church members greeting one another after a service">
+                    <blockquote>“Where the Spirit of the Lord is, there is freedom and unconditional love.”</blockquote>
                 </div>
-                <div class="img-grid">
-                    <div class="img-grid-text">
-                        <h4>Many Nations, One Body</h4>
-                        <p style="font-size: 20px; color: #444444;">We celebrate our rich diversity, united by one faith, one baptism, and one Lord Jesus Christ.</p>
+                <div class="welcome-gallery welcome-gallery-offset">
+                    <div class="welcome-note">
+                        <h3>One Body, Many Nations</h3>
+                        <p>We celebrate our rich diversity, united by one faith, one baptism, and one Lord Jesus Christ.</p>
                     </div>
-                    <img class="container-img" src="/Images/praying-lady~1.jpg" alt="">
+                    <img class="welcome-image" src="/Images/welcome-diversity.jpg" alt="A diverse congregation praying together">
                 </div>
             </div>
-        </div>
-        <div class="section-4">
-            <div class=" section-header service-header">
-            <small>You're Invited</small>
-            <h2>Service Times and Details </h2>
-            <p>Come encounter God’s presence in prayer, sound biblical instruction and intimate fellowship. We would love to have you join us.</p>
-            <div class="buttons">
-                <a href="#" class="btn pur-btn">Get Directions</a>
-                <a href="#" class="grey-btn">Watch Live</a>
-            </div>
+        </section>
+        <section class="section-4" id="services">
+            <div class="section-header service-header">
+                <small>You're Invited</small>
+                <h2>Service Times &amp; Details</h2>
+                <p>Come encounter God’s presence in prayer, sound biblical instruction, and intimate fellowship. We would love to have you join us.</p>
+                <div class="buttons">
+                    <a href="https://maps.app.goo.gl/yerdJYKo6gNgqCvTA" class="btn pur-btn"><img src="/Images/icon-directions.svg" alt="">Get Directions</a>
+                    <a href="#" class="btn grey-btn"><img src="/Images/icon-watch-live.svg" alt="">Watch Live</a>
+                </div>
             </div>
             <div class="section-grid service-details">
-                <div class="service-box">
-                    <h2>Wednesday</h2>
-                    <small>Bible & Prayer Time</small>
-                    <p>Deep dive into Scripture , spiritual foundations, intercessions for our families and faith building.</p>
-                    <div class="service-foot dl-flex">
-                        <p>7:00 PM - 8:30 PM</p>
-                        <p>Chapel<span class="middot">&middot;</span>Online </p>
+                <article class="service-box">
+                    <div class="service-main">
+                        <h3>Wednesday</h3>
+                        <small>Bible &amp; Prayer Time</small>
+                        <p>Deep dive into Scripture, spiritual foundations, intercession for our families, and faith building.</p>
                     </div>
-                </div>
-                <div class="service-box">
-                    <h2>Saturday</h2>
-                    <small>Counselling & Pastoral Care</small>
-                    <p>Confidential guidance,one-on-one prayer and pastoral supportfor individuals, marriages and families.</p>
-                    <div class="service-foot dl-flex">
-                        <p>6:30 PM - 7:30 PM</p>
-                        <p>By Appointment</p>
+                    <div class="service-foot">
+                        <p><img src="/Images/icon-time.svg" alt="">7:00 PM – 8:30 PM</p>
+                        <span>Chapel &bull; Online</span>
                     </div>
-                </div>
-                <div class="service-box">
-                    <h2>Sunday</h2>
-                    <small>Main Celebration Service</small>
-                    <p>High-spirited worship, the anointed proclamation of the Word, children's ministry classes and warm post-service fellowship.</p>
-                    <div class="service-foot dl-flex">
-                        <p>10:30 AM - 12:30 AM</p>
-                        <p>Sanctuary<span class="middot">&middot;</span>Live Stream</p>
-                    </div> 
-                </div>
+                </article>
+                <article class="service-box">
+                    <div class="service-main">
+                        <h3>Saturday</h3>
+                        <small>Counselling &amp; Pastoral Care</small>
+                        <p>Confidential guidance, one-on-one prayer, and pastoral support for individuals, marriages, and families.</p>
+                    </div>
+                    <div class="service-foot">
+                        <p><img src="/Images/icon-time.svg" alt="">6:30 PM – 7:30 PM</p>
+                        <span>By Appointment</span>
+                    </div>
+                </article>
+                <article class="service-box service-box-highlight">
+                    <div class="service-main">
+                        <h3>Sunday</h3>
+                        <small>Main Celebration Service</small>
+                        <p>High-spirited worship, the anointed proclamation of the Word, children’s ministry classes, and warm post-service fellowship.</p>
+                    </div>
+                    <div class="service-foot">
+                        <p><img src="/Images/icon-time.svg" alt="">10:30 AM – 12:30 PM</p>
+                        <span>Sanctuary &bull; Live Stream</span>
+                    </div>
+                </article>
             </div>
-            <div class="service-venue dl-flex">
-                <p>Campus Sanctuary: 571 Bayfield Street, U nit#4, Barrie, Ontario L4M 4Z9 Canada</p>
-            <a href="#">Open in Google Maps</a>
+            <div class="service-venue">
+                <p><img src="/Images/icon-map.svg" alt=""><span><strong>Campus Sanctuary:</strong> 571 Bayfield Street, Unit #4, Barrie, Ontario L4M 4Z9 Canada</span></p>
+                <a href="https://maps.app.goo.gl/yerdJYKo6gNgqCvTA">Open in Google Maps <span aria-hidden="true">&rarr;</span></a>
             </div>
-
-        </div>
-        <div class="section-5">
+        </section>
+        <section class="section-5" id="ministries">
             <div class="section-header program-header">
-                <small>There's a place for you</small>
+                <small>There's a Place for You</small>
                 <h2>Our Programs & Ministries</h2>
-                <p>Discipleship and meaningful connection for every generation. Find where your gifts are celebratedand your faith can blossom.</p>
-                <div class="section-grid">
-                    <div class="program-box dl-flex">
-                        <img src="/Images/kid-closed.jpg" class="program-img" alt="">
-                       <div class="program-box-text dl-flex">
-                         <h3>Children's Ministry</h3>
-                        <p>Creating safe, engaging and interactive Bible lessons where kids discover God's love, sing praise songs and build lifelong foundational faith.</p>
-                        <a href="#">Learn More</a>
-                       </div>
-                    </div>
-                    <div class="program-box dl-flex">
-                        <img src="/Images/youth.jpg" class="program-img" alt="">
-                        <div class="program-box-text dl-flex">
-                            <h3>Youth Ministry</h3>
-                            <p>Empowering adolescentsand teens to navigate high school with spiritual conviction, passionate worship, Friday nights and mentorship.</p>
-                        <a href="#">Learn More</a>
-
-                        </div>
-                    </div>
-                    <div class="program-box dl-flex">
-                        <img src="/Images/ladies-in-church~1.jpg" class="program-img" alt="">
-                        <div class="program-box-text dl-flex">
-                            <h3>Young Adults</h3>
-                        <p>University students, career professionals and young couples doing life together through honest discussions, practical discipleship and community outreach.</p>
-                        <a href="#">Learn More</a>
-
-                        </div>
-                    </div>
-                </div>
-            
-
+                <p>Discipleship and meaningful connection for every generation. Find where your gifts are celebrated and your faith can blossom.</p>
             </div>
-
-        </div>
-        <div class="section-6 dl-flex">
-            <h1>Support Our Mission</h1>
-            <p>Partner with us in spreading God's love by giving generously; your support helps us reach more people, serve our community and grow God's Kingdom.</p>
-            <a href="#">Give Now</a>
-            <h5>Secure e-Transfer, Credit Card and In-Person Giving Options are available.</h5>
-        </div>
-        <div class="section-7 dl-flex">
-            <p><i>Reach Out</i></p>
-            <h2>Make An Inquiry </h2>
-            <p class="p-bg">"Always remember that Jesus Christ loves you and has paid it all with His shed blood on Calvary."</p>
-            <div class="section-7-form dl-flex">
-                <form action="" class="left-form dl-flex">
-                    <label for="text">Full Name*</label>
-                    <input type="text" placeholder="John Doe">
-                    <label for="email">Email Address*</label>
-                    <input type="email" placeholder="hello@gmail.com">
-                    <label for="text">Phone Number</label>
-                    <input type="text" placeholder="(745) 334-7527">
-                    <label for="text">Your Message</label>
-                    <textarea name="message" id="" placeholder="Message"></textarea>
-                    <button class="btn pur-btn">Submit Inquiry</button>
-                </form>
-                <div class="right-form contact-list">
-                    <div class="email-box dl-flex">
-                        <img src="" alt="">
-                        <h2>Email Us</h2>
-                        <small>For questions, partnership or general inquiries:</small>
-                        <a href="mailto:info@jcacbarrie.org">info@jcacbarrie.org</a>
+            <div class="section-grid ministry-grid">
+                <article class="program-box">
+                    <div class="program-image-wrap">
+                        <img src="/Images/ministry-children.jpg" class="program-img" alt="A child enjoying a lesson in the church classroom">
+                        <span class="age-badge">Ages 4 to 11</span>
                     </div>
-                    <div class="phone-box dl-flex">
-                        <img src="" alt="">
-                        <h2>Call Us</h2>
-                        <small>Speak directly with Pastoral or Church leadership:</small>
-                        <a href="tel:+1-705-123-4567">(705) 719-7222</a>
+                    <div class="program-box-text">
+                        <h3>Children’s Ministry</h3>
+                        <p>Creating safe, engaging, and interactive Bible lessons where kids discover God’s love, sing praise songs, and build lifelong foundational faith.</p>
+                        <a href="#contact">Learn More <img src="/Images/icon-learn-more.svg" alt=""></a>
+                    </div>
+                </article>
+                <article class="program-box">
+                    <div class="program-image-wrap">
+                        <img src="/Images/ministry-youth.jpg" class="program-img" alt="Young people from the church youth group celebrating together">
+                        <span class="age-badge">Ages 12 to 17</span>
+                    </div>
+                    <div class="program-box-text">
+                        <h3>Youth Ministry</h3>
+                        <p>Empowering adolescents and teens to navigate high school with spiritual conviction, passionate worship, Friday nights, and mentorship.</p>
+                        <a href="#contact">Learn More <img src="/Images/icon-learn-more.svg" alt=""></a>
+                    </div>
+                </article>
+                <article class="program-box">
+                    <div class="program-image-wrap">
+                        <img src="/Images/ministry-young-adults.jpg" class="program-img" alt="Young adults sharing a meal and conversation">
+                        <span class="age-badge age-badge-muted">Ages 18 or older</span>
+                    </div>
+                    <div class="program-box-text">
+                        <h3>Young Adults</h3>
+                        <p>University students, career professionals, and newlyweds doing life together through honest discussions, practical discipleship, and community outreach.</p>
+                        <a href="#contact">Learn More <img src="/Images/icon-learn-more.svg" alt=""></a>
+                    </div>
+                </article>
+            </div>
+        </section>
+        <section class="section-6" id="giving">
+            <div class="giving-content">
+                <h2>Support Our Mission</h2>
+                <p>Partner with us in spreading the love of Christ by giving generously — your support helps us reach more people, serve our community, and grow God’s Kingdom.</p>
+                <a class="giving-link" href="#contact">Give Now <img src="/Images/icon-learn-more.svg" alt=""></a>
+                <small>Secure e-Transfer, Credit Card, and In-Person Giving Options Available</small>
+            </div>
+        </section>
+        <section class="section-7" id="contact">
+            <div class="section-header contact-header">
+                <small>Reach Out</small>
+                <h2>Make An Inquiry</h2>
+                <p class="p-bg">“Always remember that Jesus Christ loves you and paid it all with His shed blood on Calvary.”</p>
+            </div>
+            <div class="section-7-form">
+                <form class="left-form">
+                    <div class="form-field">
+                        <label for="full-name">Full Name *</label>
+                        <input id="full-name" name="name" type="text" autocomplete="name" placeholder="Jane Doe" required>
+                        <small>Enter your full name.</small>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="email">Enter your email *</label>
+                            <input id="email" name="email" type="email" autocomplete="email" placeholder="hello@gmail.com" required>
+                            <small>Enter your email address.</small>
+                        </div>
+                        <div class="form-field">
+                            <label for="phone">Phone Number</label>
+                            <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="(705) 000-0000">
+                            <small>Enter your phone number.</small>
+                        </div>
+                    </div>
+                    <div class="form-field">
+                        <label for="message">Your message</label>
+                        <textarea id="message" name="message" placeholder="Enter your message or prayer request here..."></textarea>
+                    </div>
+                    <button class="btn pur-btn" type="submit">Submit Inquiry</button>
+                </form>
+                <div class="contact-list">
+                    <article class="contact-card">
+                        <span class="contact-icon"><img src="/Images/icon-email.svg" alt=""></span>
+                        <div>
+                            <h3>Email Us</h3>
+                            <p>Questions, partnership, or general inquiries:</p>
+                            <a href="mailto:info@jcacbarrie.org">info@jcacbarrie.org</a>
+                        </div>
+                    </article>
+                    <article class="contact-card">
+                        <span class="contact-icon"><img src="/Images/icon-phone.svg" alt=""></span>
+                        <div>
+                            <h3>Call Us</h3>
+                            <p>Speak directly with pastoral or church leadership:</p>
+                            <a href="tel:+17057197222">(705) 719-7222</a>
+                        </div>
+                    </article>
+                    <article class="contact-card">
+                        <span class="contact-icon contact-icon-green"><img src="/Images/icon-find-us.svg" alt=""></span>
+                        <div>
+                            <h3>Find Us</h3>
+                            <p>Barrie, Ontario Sanctuary Campus:</p>
+                            <address>571 Bayfield Street, Unit #4<br>Barrie, Ontario L4M 4Z9 Canada</address>
+                            <a class="directions-link" href="https://maps.app.goo.gl/yerdJYKo6gNgqCvTA">View Directions on Map <img src="/Images/icon-arrow.svg" alt=""></a>
+                        </div>
+                    </article>
                 </div>
-                <div class="map-box dl-flex">
-                    <img src="" alt="">
-                    <h2>Find Us</h2>
-                    <small>Barrie, Ontario Sanctuary Campus:</small>
-                    <h3 href="maps://?q=571+Bayfield+Street,+Unit+#4,+Barrie,+Ontario+L4M+4Z9+Canada">571 Bayfield Street, Unit #4, Barrie, Ontario L4M 4Z9 Canada</h3>
-                    <a href="#">VIEW DIRECTIONS ON MAP</a>
-                </div>
-        </div>
-
+            </div>
+        </section>
     </div>
+    <footer class="site-footer">
+        <div class="site-footer-inner">
+            <div class="footer-brand">
+                <a class="logo-bar dl-flex" href="#home" aria-label="JCAC Barrie home">
+                    <img src="/Images/nbg-LOGO.png" alt="">
+                    <span class="logo-text">
+                        <strong>JCAC Barrie</strong>
+                        <span>JESUS CHRIST ANOINTED CHURCH</span>
+                    </span>
+                </a>
+                <p>A welcoming church family growing in faith, sharing the love of Jesus, and serving Barrie and beyond.</p>
+            </div>
+            <nav class="footer-navigation" aria-label="Footer navigation">
+                <h2>Explore</h2>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="#ministries">Ministries</a></li>
+                    <li><a href="#services">Service Times</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="footer-contact">
+                <h2>Visit Us</h2>
+                <address>571 Bayfield Street, Unit #4<br>Barrie, Ontario L4M 4Z9 Canada</address>
+                <a href="mailto:info@jcacbarrie.org">info@jcacbarrie.org</a>
+                <a href="tel:+17057197222">(705) 719-7222</a>
+            </div>
+        </div>
+        <div class="site-footer-bottom">
+            <p>&copy; 2026 Jesus Christ Anointed Church, Barrie</p>
+            <a href="#home">Back to top <span aria-hidden="true">&uarr;</span></a>
+        </div>
+    </footer>
 </body>
 </html>
